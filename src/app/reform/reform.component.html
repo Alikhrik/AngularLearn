@@ -1,0 +1,36 @@
+<h2>Реактивные формы</h2>
+
+<form [formGroup]="registerForm">
+    <!-- Привязка формы к группе -->
+    <label for="form-avatar">Аватар </label>
+    <input id="form-avatar" type="file" formControlName="avatar">
+    <br/>
+    <label for="form-login">Логин</label>
+    <input id="form-login" formControlName="login"><!-- Привязка элемента к FormControl -->
+    <b *ngIf="registerForm.controls['login'].touched && registerForm.controls['login'].invalid">Логин некорректный</b>
+    <br>
+    <label for="form-name">Имя</label>
+    <input id="form-name" formControlName="realName">
+    <b *ngIf="registerForm.controls['realName'].touched && registerForm.controls['realName'].invalid">Имя некорректное</b>
+    <br>
+    <label for="form-birthdate">Дата рождения</label>
+    <input id="form-birthdate" type="date" formControlName="birthdate">
+    <br>
+    <label><input type="radio" name="gender" value="male" formControlName="gender"> M </label>
+    <label><input type="radio" name="gender" value="female" formControlName="gender"> Ж </label>
+    <b *ngIf="registerForm.controls['gender'].touched && registerForm.controls['gender'].invalid">Вариант не выбран</b>
+    <br>
+    <label for="form-region">Район </label>
+    <select id="form-region" formControlName="region">
+        <option></option>
+        <option *ngFor="let region of regions">{{region}}</option>
+    </select>
+    <b *ngIf="registerForm.controls['region'].touched && registerForm.controls['region'].invalid"> Вариант не выбран</b>
+    <br>
+    <label><input type="checkbox" formControlName="agree">Согласен с условиями</label>
+    <b *ngIf="registerForm.controls['agree'].touched && registerForm.controls['agree'].invalid"> Необходимо подтвердить</b>
+    <br>
+    <input type="submit" value="Регистрация" (click)="regClick()">
+</form>
+<hr>
+<br>
